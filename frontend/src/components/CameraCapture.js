@@ -32,7 +32,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
   useEffect(() => {
     const interval = setInterval(captureAndSend, 150);
     return () => clearInterval(interval);
-  }, [captureAndSend]);
+  }, []);
 
   const captureAndSend = async () => {
     const video = videoRef.current;

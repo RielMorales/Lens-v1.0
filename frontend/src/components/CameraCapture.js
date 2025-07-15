@@ -13,8 +13,6 @@ const CameraCapture = ({ setProcessedUrl }) => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
            video: {
-            width: { ideal: 640 },
-            height: { ideal: 480 },
             facingMode: { ideal: "environment" }
            }
         });
@@ -22,7 +20,6 @@ const CameraCapture = ({ setProcessedUrl }) => {
           videoRef.current.srcObject = stream;
           videoRef.current.onloadedmetadata = () => {
             videoRef.current.play().catch(console.error);
-
             setCameraStarted(true);
           };
         }

@@ -61,7 +61,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
       } catch (err) {
         console.error("Processing error:", err);
       }
-    }, 'image/png');
+    }, 'image/jpeg');
   }, [setProcessedUrl]);
 
   useEffect(() => {

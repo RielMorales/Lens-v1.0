@@ -24,8 +24,8 @@ const CameraCapture = ({ setProcessedUrl }) => {
             videoRef.current.play().catch(console.error);
 
             const canvas = canvasRef.current;
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            canvas.width = videoRef.current.videoWidth;
+            canvas.height = videoRef.current.videoHeight;
 
             setCameraStarted(true);
           };

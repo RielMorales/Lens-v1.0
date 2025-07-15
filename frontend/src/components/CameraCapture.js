@@ -13,8 +13,8 @@ const CameraCapture = ({ setProcessedUrl }) => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
            video: {
-            width: { ideal: 1280 },
-            height: { ideal: 720 },
+            width: { ideal: 640 },
+            height: { ideal: 480 },
             facingMode: { ideal: "environment" }
            }
         });

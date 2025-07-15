@@ -22,6 +22,11 @@ const CameraCapture = ({ setProcessedUrl }) => {
           videoRef.current.srcObject = stream;
           videoRef.current.onloadedmetadata = () => {
             videoRef.current.play().catch(console.error);
+
+            const canvas = canvasRef.current;
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
             setCameraStarted(true);
           };
         }
@@ -72,8 +77,8 @@ const CameraCapture = ({ setProcessedUrl }) => {
 
   return (
     <>
-      <video ref={videoRef} width="1280" height="720" autoPlay muted playsInline style={{ display: 'none' }} />
-      <canvas ref={canvasRef} width="1280" height="720" style={{ display: 'none' }} />
+      <video ref={videoRef} width="auto" height="auto" autoPlay muted playsInline style={{ display: 'none' }} />
+      <canvas ref={canvasRef} style={{ display: 'none' }} />
     </>
   );
 };

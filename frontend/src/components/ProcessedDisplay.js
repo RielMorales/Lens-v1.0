@@ -5,7 +5,7 @@ const ProcessedDisplay = ({ processedUrl }) => {
     <div>
       <h1>Processed AR Video</h1>
       {processedUrl ? (
-        <img src={processedUrl} alt="Processed Frame" width="100%" height="100%" objectit="cover" />
+        <img src={processedUrl} alt="Processed Frame" width="100%" height="550rem" style={{objectFit: "cover"}} />
       ) : (
         <p>Waiting for video...</p>
       )}

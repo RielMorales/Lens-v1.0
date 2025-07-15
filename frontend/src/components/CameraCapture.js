@@ -60,7 +60,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
       } catch (err) {
         console.error("Processing error:", err);
       }
-    }, 'image/jpeg');
+    }, 'image/png');
   }, [setProcessedUrl]);
 
   useEffect(() => {
@@ -72,8 +72,8 @@ const CameraCapture = ({ setProcessedUrl }) => {
 
   return (
     <>
-      <video ref={videoRef} width="auto" height="auto" autoPlay muted playsInline style={{ display: 'none' }} />
-      <canvas ref={canvasRef} width="auto" height="auto" style={{ display: 'none' }} />
+      <video ref={videoRef} width="1280" height="720" autoPlay muted playsInline style={{ display: 'none' }} />
+      <canvas ref={canvasRef} width="1280" height="720" style={{ display: 'none' }} />
     </>
   );
 };

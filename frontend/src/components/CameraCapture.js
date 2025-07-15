@@ -13,6 +13,8 @@ const CameraCapture = ({ setProcessedUrl }) => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
            video: {
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
             facingMode: { ideal: "environment" }
            }
         });
@@ -64,7 +66,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
   useEffect(() => {
     if (!cameraStarted) return;
 
-    const interval = setInterval(captureAndSend, 60);
+    const interval = setInterval(captureAndSend, 500);
     return () => clearInterval(interval);
   }, [cameraStarted, captureAndSend]);
 

@@ -5,8 +5,8 @@ function App() {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [processedUrl, setProcessedUrl] = useState(null);
-  const [streaming, setStreaming] = useState(false);
 
+  // Start camera when component mounts
   useEffect(() => {
     const startCamera = async () => {
       try {
@@ -26,14 +26,13 @@ function App() {
     startCamera();
   }, []);
 
+  // Start streaming frames immediately
   useEffect(() => {
-    let interval;
-    if (streaming) {
-      interval = setInterval(captureAndSend, 60); // every 200ms
-    }
+    const interval = setInterval(captureAndSend, 200); // ~16 FPS
     return () => clearInterval(interval);
-  }, [streaming]);
+  }, []);
 
+  // Capture and send frame to backend
   const captureAndSend = async () => {
     const canvas = canvasRef.current;
     const video = videoRef.current;
@@ -43,6 +42,8 @@ function App() {
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     canvas.toBlob(async (blob) => {
+      if (!blob) return;
+
       const formData = new FormData();
       formData.append('file', blob, 'frame.jpg');
 
@@ -50,8 +51,12 @@ function App() {
         const response = await axios.post('http://127.0.0.1:8000/process-frame/', formData, {
           responseType: 'blob',
         });
+
         const imgUrl = URL.createObjectURL(response.data);
-        setProcessedUrl(imgUrl);
+        setProcessedUrl(prev => {
+          if (prev) URL.revokeObjectURL(prev); // Clean up old blobs
+          return imgUrl;
+        });
       } catch (error) {
         console.error('Processing error:', error);
       }
@@ -60,16 +65,19 @@ function App() {
 
   return (
     <div>
-      <h1>Live Video Processing with FastAPI</h1>
-      <video ref={videoRef} width="320" height="240" autoPlay muted playsInline />
-      <canvas ref={canvasRef} width="320" height="240" style={{ display: 'none' }} />
-      <button onClick={() => setStreaming(!streaming)}>
-        {streaming ? 'Stop Stream' : 'Start Stream'}
-      </button>
+      <h1>Processed AR Video</h1>
 
+      {/* Hidden video and canvas for processing only */}
+      <video ref={videoRef} width="320" height="240" autoPlay muted playsInline style={{ display: 'none' }} />
+      <canvas ref={canvasRef} width="320" height="240" style={{ display: 'none' }} />
+
+      {/* Display only processed video */}
       <div>
-        <h2>Processed Video:</h2>
-        {processedUrl && <img src={processedUrl} alt="Processed Frame" width="320" height="240" />}
+        {processedUrl ? (
+          <img src={processedUrl} alt="Processed Frame" width="320" height="240" />
+        ) : (
+          <p>Waiting for video...</p>
+        )}
       </div>
     </div>
   );

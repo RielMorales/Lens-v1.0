@@ -1,0 +1,3 @@
+memory_db = {
+    "fruits": []
+}

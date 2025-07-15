@@ -1,0 +1,17 @@
+import uvicorn
+from fastapi import FastAPI
+from controllers.fruit_controller import router as fruit_router
+from controllers.grayscale_controller import router as grayscale_router
+from middleware.cors import setup_cors
+
+app = FastAPI()
+
+# Setup middleware
+setup_cors(app)
+
+# Include routes
+app.include_router(fruit_router)
+app.include_router(grayscale_router)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

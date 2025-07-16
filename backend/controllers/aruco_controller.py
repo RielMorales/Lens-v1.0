@@ -22,7 +22,7 @@ dist_coeffs = np.zeros((5, 1), dtype=np.float32)  # assuming no distortion
 # Define marker length in meters (real world size)
 marker_length = 0.05  # 5 cm
 
-@router.post("/process-frame/")
+@router.post("/process-frame")
 async def process_frame(file: UploadFile = File(...)):
     # Read and decode the uploaded image
     image_bytes = await file.read()

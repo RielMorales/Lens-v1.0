@@ -64,7 +64,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
   useEffect(() => {
     if (!cameraStarted) return;
 
-    const interval = setInterval(captureAndSend, 500);
+    const interval = setInterval(captureAndSend, 60);
     return () => clearInterval(interval);
   }, [cameraStarted, captureAndSend]);
 

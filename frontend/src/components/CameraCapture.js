@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const CameraCapture = ({ setProcessedUrl }) => {
@@ -9,11 +9,11 @@ const CameraCapture = ({ setProcessedUrl }) => {
     const startCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-           video: {
+          video: {
             width: { ideal: 640 },
             height: { ideal: 480 },
             facingMode: { ideal: "environment" }
-           }
+          }
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -29,12 +29,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
     startCamera();
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(captureAndSend, 150);
-    return () => clearInterval(interval);
-  }, []);
-
-  const captureAndSend = async () => {
+  const captureAndSend = useCallback(async () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!video || !canvas) return;
@@ -62,7 +57,12 @@ const CameraCapture = ({ setProcessedUrl }) => {
         console.error("Processing error:", err);
       }
     }, 'image/jpeg');
-  };
+  }, [setProcessedUrl]);
+
+  useEffect(() => {
+    const interval = setInterval(captureAndSend, 150);
+    return () => clearInterval(interval);
+  }, [captureAndSend]);
 
   return (
     <>

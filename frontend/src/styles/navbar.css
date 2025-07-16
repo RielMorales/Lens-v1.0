@@ -1,0 +1,23 @@
+.navbar {
+    margin: 0;
+    padding: 8px px;
+    background-color: #862633;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: Helvetica;
+}
+
+.navbar-title {
+    margin: 0;
+}
+
+.navbar-links {
+
+    list-style: none;
+    display: flex;
+    gap: 100px;
+    margin: 20px;
+    padding: 8px;
+}

@@ -1,17 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useCallback} from 'react';
 import axios from 'axios';
+
+const API_URL = process.env.REACT_APP_API_URL
 
 const CameraCapture = ({ setProcessedUrl }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const [cameraStarted, setCameraStarted] = useState(false);
 
   useEffect(() => {
     const startCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
            video: {
-            width: { ideal: 640 },
-            height: { ideal: 480 },
             facingMode: { ideal: "environment" }
            }
         });
@@ -19,6 +20,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
           videoRef.current.srcObject = stream;
           videoRef.current.onloadedmetadata = () => {
             videoRef.current.play().catch(console.error);
+            setCameraStarted(true);
           };
         }
       } catch (err) {
@@ -29,12 +31,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
     startCamera();
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(captureAndSend, 150);
-    return () => clearInterval(interval);
-  }, []);
-
-  const captureAndSend = async () => {
+  const captureAndSend = useCallback(async () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!video || !canvas) return;
@@ -49,7 +46,7 @@ const CameraCapture = ({ setProcessedUrl }) => {
       formData.append('file', blob, 'frame.jpg');
 
       try {
-        const response = await axios.post('http://127.0.0.1:8000/process-frame/', formData, {
+        const response = await axios.post(`${API_URL}/process-frame`, formData, {
           responseType: 'blob',
         });
 
@@ -62,7 +59,14 @@ const CameraCapture = ({ setProcessedUrl }) => {
         console.error("Processing error:", err);
       }
     }, 'image/jpeg');
-  };
+  }, [setProcessedUrl]);
+
+  useEffect(() => {
+    if (!cameraStarted) return;
+
+    const interval = setInterval(captureAndSend, 500);
+    return () => clearInterval(interval);
+  }, [cameraStarted, captureAndSend]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from controllers.fruit_controller import router as fruit_router
-from backend.controllers.aruco_controller import router as aruco_router
+from controllers.aruco_controller import router as aruco_router
 from middleware.cors import setup_cors
 
 app = FastAPI()

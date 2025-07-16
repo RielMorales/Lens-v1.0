@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback} from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -12,9 +12,11 @@ const CameraCapture = ({ setProcessedUrl }) => {
     const startCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
-           video: {
+          video: {
+            width: { ideal: 640 },
+            height: { ideal: 480 },
             facingMode: { ideal: "environment" }
-           }
+          }
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -62,11 +64,9 @@ const CameraCapture = ({ setProcessedUrl }) => {
   }, [setProcessedUrl]);
 
   useEffect(() => {
-    if (!cameraStarted) return;
-
-    const interval = setInterval(captureAndSend, 500);
+    const interval = setInterval(captureAndSend, 150);
     return () => clearInterval(interval);
-  }, [cameraStarted, captureAndSend]);
+  }, [captureAndSend]);
 
   return (
     <>

@@ -1,10 +1,15 @@
 .description-box {
-    margin: 25px auto;
+    display: flex;
+    margin: 20px auto;
     padding: 10px;
     max-width: 1500px;
-    text-align: center;
-    align-content: center;
+    justify-content: center;
+    align-items: center;
     background: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.description-box p {
+    text-align: center;
 }

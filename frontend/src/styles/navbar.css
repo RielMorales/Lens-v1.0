@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: max(300px, 60%);
+    width: 450px;
     height: 45px;
     background-color: #862633;
     border-radius: 40px;
@@ -16,12 +16,13 @@
 .navbar-links {
     list-style: none;
     display: flex;
-    gap: 150px;
+    gap: 100px;
     align-items: center;
     justify-content: center;
     text-align: center;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap;
 }
 
 .navbar-links li {
@@ -42,4 +43,25 @@
 
 .navbar-links a:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* this is for responsiveness on mobile phones */
+@media (max-width: 480px) {
+    .navbar {
+        height: 45px;
+        width: 90%;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+    .navbar-links {
+        gap: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .navbar-links a {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
 }

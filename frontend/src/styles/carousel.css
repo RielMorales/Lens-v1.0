@@ -1,0 +1,17 @@
+.carousel {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        height: 30vh;
+    }
+}
+
+@media (min-width: 1200px) {
+    .carousel {
+        height: 80vh;
+    }
+}

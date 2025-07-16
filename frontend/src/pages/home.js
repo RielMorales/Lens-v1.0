@@ -5,13 +5,13 @@ import React from 'react';
 
 //import carousel
 import CarouselImage from '../components/carousel';
+import Lens from '../components/introLens';
 
 const Home = () => {
     return (
         <div style={{ padding: '2rem' }}>
             <CarouselImage />
-            <h1>UPOU LENS</h1>
-            <p>This is the default landing page of your app.</p>
+            <Lens />
         </div>
     );
 };

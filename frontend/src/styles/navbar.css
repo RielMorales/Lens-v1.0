@@ -1,11 +1,13 @@
 .navbar {
+    position: absolute;
     margin: 0;
-    padding: 8px px;
+    padding: 0;
     background-color: #862633;
     color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    width: 100%;
     font-family: Helvetica;
 }
 

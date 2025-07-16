@@ -8,19 +8,19 @@ import Navbar from './components/navbar.js';
 
 function App() {
 
-  
+
 
   return (
     <div>
       <BrowserRouter>
-       <Navbar />
         <Routes>
           <Route path="/" element={<Navigate to='/home' replace />} />
           <Route path="/home" element={<Home data={""} />} />
           <Route path="/scanner" element={<Scanner data={""} />} />
         </Routes>
-      </BrowserRouter>
 
+        <Navbar />
+      </BrowserRouter>
     </div>
   );
 };

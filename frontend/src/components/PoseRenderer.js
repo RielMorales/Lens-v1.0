@@ -57,10 +57,10 @@ export default function PoseRenderer({ rvec, tvec }) {
 
       // Convert translation from cm to meters, flip axes to match Three.js convention
       const position = new THREE.Vector3(
-        tvec[0] * scaleFactor +0.00,
-        -tvec[1] * scaleFactor -0.5,
-        -tvec[2] * scaleFactor +0.00
-      ) // convert cm to meters
+        tvec[0] * scaleFactor +0.20, //Right
+        -tvec[1] * scaleFactor -0.50, //UP
+        -tvec[2] * scaleFactor -0.50 // Forward 
+      )
 
       modelRef.current.position.copy(position)
 

@@ -1,38 +1,28 @@
-import React, { useState } from 'react'
-import { Canvas } from '@react-three/fiber'
-import CameraCapture from './components/CameraCapture'
-import PoseRenderer from './components/PoseRenderer'
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-export default function App() {
-  const [pose, setPose] = useState(null)
+// import pages/components
+import Home from './pages/home.js';
+import Scanner from './pages/Scan.js';
+import Navbar from './components/navbar.js';
+import DetailsPage from './pages/detailsOfBuildings.js';
+
+function App() {
 
   return (
-    <>
-      {/* ✅ Always keep the camera feed visible */}
-      <CameraCapture onPoseUpdate={setPose} />
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to='/home' replace />} />
+          <Route path="/home" element={<Home data={""} />} />
+          <Route path="/home/details/:id" element={<DetailsPage />} />
+          <Route path="/scan" element={<Scanner data={""} />} />
+        </Routes>
 
-      {/* ✅ Overlay the 3D Canvas on top */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 1,
-          pointerEvents: 'none',
-        }}
-      >
-        <Canvas camera={{ position: [0, 0, 1] }}>
-          {/* ✅ Optional: Add ambient light or helpers */}
-          <ambientLight />
-          {/* <axesHelper args={[0.1]} />
-          <gridHelper args={[1, 10]} /> */}
+        <Navbar />
+      </BrowserRouter>
+    </div>
+  );
+};
 
-          {/* ✅ Only the model disappears if pose is null */}
-          {pose && <PoseRenderer rvec={pose.rvec} tvec={pose.tvec} />}
-        </Canvas>
-      </div>
-    </>
-  )
-}
+export default App;

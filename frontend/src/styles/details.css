@@ -9,7 +9,8 @@
 .details-header {
     display: flex;
     align-items: center;
-    padding: 12px;
+    padding: 14px;
+    align-items: center;
     border-bottom: 1px solid #ccc;
     background-color: #ffffff;
 }
@@ -53,6 +54,7 @@
 
 .details-content p {
     margin: 6px 0;
+    color: #2c3e50;
 }
 
 .image-wrapper {

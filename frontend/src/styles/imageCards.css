@@ -12,6 +12,8 @@
 .image-card-link {
     text-decoration: none;
     color: inherit;
+    flex: 1 1 calc(33.333% - 40px);
+    max-width: 300px;
 }
 
 .image-card {
@@ -20,17 +22,15 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 100%;
-    max-width: 300px;
     transition: transform 0.2s;
 }
 
 .image-card:hover {
-    transform: scale(1.0);
+    transform: scale(1.03);
 }
 
 .image-thumb {
     width: 100%;
-    max-width: 400px;
     height: 180px;
     object-fit: cover;
 }
@@ -49,4 +49,30 @@
     margin: 5px 0 0;
     font-size: 0.95em;
     color: #666666;
+}
+
+/* for responsiveness */
+@media (max-width: 900px) {
+    .image-card-link {
+        flex: 1 1 calc(50% - 40px);
+    }
+}
+
+@media (max-width: 600px) {
+    .image-card-link {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .image-thumb {
+        height: 160px;
+    }
+
+    .image-info h3 {
+        font-size: 1em;
+    }
+
+    .image-info p {
+        font-size: 0.9em;
+    }
 }

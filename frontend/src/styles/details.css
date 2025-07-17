@@ -4,13 +4,14 @@
     min-height: 100vh;
     font-family: Helvetica;
     background: #ffffff;
+    padding: 0 16px;
+    box-sizing: border-box;
 }
 
 .details-header {
     display: flex;
     align-items: center;
-    padding: 14px;
-    align-items: center;
+    padding: 14px 0;
     border-bottom: 1px solid #ccc;
     background-color: #ffffff;
 }
@@ -22,58 +23,71 @@
     background: none;
     border: none;
     border-radius: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
 }
 
 .details-title {
-    font-size: 22px;
+    font-size: clamp(18px, 5vw, 24px);
     font-weight: bold;
-}
-
-.details-image {
-    width: 90%;
-    max-width: 400px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
-}
-
-.details-content {
-    padding: 16px;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.details-description {
-    margin-bottom: 12px;
-    line-height: 1.6;
-    text-align: justify;
-    opacity: 0.8;
-}
-
-.details-content p {
-    margin: 6px 0;
     color: #2c3e50;
+    margin-bottom: 8px;
+    text-align: center;
 }
 
 .image-wrapper {
     display: flex;
     justify-content: center;
     margin: 16px 0;
+    width: 100%;
+}
+
+.details-image {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-content {
+    padding: 16px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.details-description {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    text-align: justify;
+    color: #666666;
+    opacity: 0.85;
 }
 
 @media (max-width: 600px) {
+    .details-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     .details-title {
+        text-align: left;
+        margin-top: 4px;
+    }
+
+    .back-button {
         font-size: 18px;
+        margin-bottom: 8px;
     }
 
-    .details-image {
-        width: 100%;
-        max-width: 90%;
+    .image-wrapper {
+        margin: 8px 0;
     }
 
-    .details-content p {
-        font-size: 14px;
+    .details-content {
+        padding: 8px;
     }
 }

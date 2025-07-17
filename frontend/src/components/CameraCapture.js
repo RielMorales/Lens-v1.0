@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import axios from 'axios'
 
+const API_URL = process.env.REACT_APP_API_URL
+
 export default function CameraCapture({ onPoseUpdate }) {
   const videoRef = useRef()
   const canvasRef = useRef()
@@ -58,7 +60,7 @@ export default function CameraCapture({ onPoseUpdate }) {
 
         try {
             const res = await axios.post(
-            'http://localhost:8000/process-frame/', // 🔁 adjust if hosted
+            `${API_URL}/process-frame/`, // 🔁 adjust if hosted
             formData
             )
 

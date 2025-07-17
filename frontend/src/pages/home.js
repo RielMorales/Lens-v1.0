@@ -1,17 +1,16 @@
 import React from 'react';
-// import OblationPlaza from '../components/detailModals/oblationPlaza';
-// import MainBuilding from '../components/detailModals/mainBuilding';
-// import ICC from '../components/detailModals/icc';
 
 //import carousel
 import CarouselImage from '../components/carousel';
 import Lens from '../components/introLens';
+import ImageCard from '../components/imageCards';
 
 const Home = () => {
     return (
         <div style={{ padding: '2rem' }}>
             <CarouselImage />
             <Lens />
+            <ImageCard />
         </div>
     );
 };

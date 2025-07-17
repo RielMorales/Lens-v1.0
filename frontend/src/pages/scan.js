@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import CameraCapture from '../components/CameraCapture'
 import PoseRenderer from '../components/PoseRenderer'
 
-const Scan = () => {
+const Scanner = () => {
     const [pose, setPose] = useState(null)
     return (
         <div>
@@ -36,4 +36,4 @@ const Scan = () => {
     )
 }
 
-export default Scan
+export default Scanner

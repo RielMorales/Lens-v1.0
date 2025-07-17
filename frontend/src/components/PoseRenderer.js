@@ -59,7 +59,7 @@ export default function PoseRenderer({ rvec, tvec }) {
       const position = new THREE.Vector3(
         tvec[0] * scaleFactor +0.00,
         -tvec[1] * scaleFactor -0.5,
-        -tvec[2] +0.00
+        -tvec[2] * scaleFactor +0.00
       ) // convert cm to meters
 
       modelRef.current.position.copy(position)

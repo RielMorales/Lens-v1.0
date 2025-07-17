@@ -1,12 +1,12 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function PoseRenderer({ rvec, tvec }) {
   const modelRef = useRef()
-  const [videoTexture, setVideoTexture] = useState(null)
-  const [videoScale, setVideoScale] = useState([])
+  // const [videoTexture, setVideoTexture] = useState(null)
+  // const [videoScale, setVideoScale] = useState([])
   const gltf = useGLTF('/assets/gltf/asset.gltf') // or /assets/test.glb
 
   const { gl } = useThree()
@@ -34,16 +34,16 @@ export default function PoseRenderer({ rvec, tvec }) {
       .then(stream => {
         video.srcObject = stream
         video.onloadedmetadata = () => {
-          const aspectRatio = video.videoWidth / video.videoHeight
-          const height = 10
-          const width = height * aspectRatio
-          setVideoScale([width, height, 1])
+          // const aspectRatio = video.videoWidth / video.videoHeight
+          // const height = 10
+          // const width = height * aspectRatio
+          // setVideoScale([width, height, 1])
         }
         video.play()
         const texture = new THREE.VideoTexture(video)
         texture.minFilter = THREE.LinearFilter
         texture.magFilter = THREE.LinearFilter
-        setVideoTexture(texture)
+        // setVideoTexture(texture)
       })
 }, [gl])
 

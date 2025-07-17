@@ -13,17 +13,17 @@ export default function PoseRenderer({ rvec, tvec }) {
 
   useEffect(() => {
 
-    const canvas = gl.domElement
+    // const canvas = gl.domElement
 
-    const width = 1024 * 1.5
-    const height = 576 * 1.5
+    // const width = 1024 * 1.5
+    // const height = 576 * 1.5
 
-    canvas.style.width = `${width}px`
-    canvas.style.height = `${height}px`
+    // canvas.style.width = `${width}px`
+    // canvas.style.height = `${height}px`
 
-    gl.setSize(width, height, false)
-    gl.setPixelRatio(window.devicePixelRatio) // optional for sharpness
-    console.log("🎥 WebGL canvas size:", canvas.width, "x", canvas.height)
+    // gl.setSize(width, height, false)
+    // gl.setPixelRatio(window.devicePixelRatio) // optional for sharpness
+    // console.log("🎥 WebGL canvas size:", canvas.width, "x", canvas.height)
 
     const video = document.createElement('video')
     video.autoplay = true

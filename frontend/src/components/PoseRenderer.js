@@ -9,7 +9,15 @@ export default function PoseRenderer({ rvec, tvec }) {
   // const [videoScale, setVideoScale] = useState([])
   const gltf = useGLTF('/assets/gltf/asset.gltf') // or /assets/test.glb
 
+  const previousPose = useRef({ rvec: null, tvec: null })
+
   const { gl } = useThree()
+
+  // Low-pass filter function
+  const smoothArray = (prev, curr, alpha = 0.1) => {
+    if (!prev) return curr
+    return prev.map((p, i) => p * (1 - alpha) + curr[i] * alpha)
+  }
 
   useEffect(() => {
 
@@ -49,37 +57,86 @@ export default function PoseRenderer({ rvec, tvec }) {
 
 
   useFrame(() => {
-      if (!modelRef.current || !rvec || !tvec) return
+      // if (!modelRef.current || !rvec || !tvec) return
 
-      console.log("✅ Pose Data", { rvec, tvec })
+      // console.log("✅ Pose Data", { rvec, tvec })
 
-      const scaleFactor = 10
+      // // Smooth the pose
+      // const smoothedRvec = smoothArray(previousPose.current.rvec, rvec)
+      // const smoothedTvec = smoothArray(previousPose.current.tvec, tvec)
 
-      // Convert translation from cm to meters, flip axes to match Three.js convention
-      const position = new THREE.Vector3(
-        tvec[0] * scaleFactor +0.20, // +Right    -Left
-        -tvec[1] * scaleFactor -0.50, //+Up       -Down
-        -tvec[2] * scaleFactor -2.00 // +Forward  -Backward  
-      )
+      // previousPose.current = {
+      //   rvec: smoothedRvec,
+      //   tvec: smoothedTvec,
+      // }
 
-      modelRef.current.position.copy(position)
+      // const scaleFactor = 10
 
-      // Convert rvec (Rodrigues) to quaternion
-      const theta = Math.sqrt(rvec[0] ** 2 + rvec[1] ** 2 + rvec[2] ** 2)
-      if (theta > 0) {
-      const axis = new THREE.Vector3(...rvec).normalize()
-      const quaternion = new THREE.Quaternion().setFromAxisAngle(axis, theta)
+      // // Convert translation from cm to meters, flip axes to match Three.js convention
+      // const position = new THREE.Vector3(
+      //   smoothedTvec[0] * scaleFactor +0.20, // +Right    -Left
+      //   -smoothedTvec[1] * scaleFactor -0.50, //+Up       -Down
+      //   -smoothedTvec[2] * scaleFactor -2.00 // +Forward  -Backward  
+      // )
+
+      // modelRef.current.position.copy(position)
+
+      // // Convert rvec (Rodrigues) to quaternion
+      // const theta = Math.sqrt(smoothedRvec[0] ** 2 + smoothedRvec[1] ** 2 + smoothedRvec[2] ** 2)
+      // if (theta > 0) {
+      // const axis = new THREE.Vector3(...smoothedRvec).normalize()
+      // const quaternion = new THREE.Quaternion().setFromAxisAngle(axis, theta)
       
-      // modelRef.current.quaternion.copy(quaternion)
+      // // modelRef.current.quaternion.copy(quaternion)
 
-      // Manual rotation adjustment (example: rotate 90° on X)
+      // // Manual rotation adjustment (example: rotate 90° on X)
+      // const manualQuat = new THREE.Quaternion().setFromEuler(
+      // new THREE.Euler(Math.PI / 1, 0.5, 0) // ← change angles here
+      // )
+
+      // // Combine rotations: marker * manual
+      // modelRef.current.quaternion.copy(quaternion.multiply(manualQuat))
+      // }
+    if (!modelRef.current || !rvec || !tvec) return
+
+    const scaleFactor = 10
+
+    // === Smooth translation ===
+    const smoothedTvec = smoothArray(previousPose.current.tvec, tvec)
+
+    const position = new THREE.Vector3(
+      smoothedTvec[0] * scaleFactor + 0.20,
+      -smoothedTvec[1] * scaleFactor - 0.50,
+      -smoothedTvec[2] * scaleFactor - 2.00
+    )
+
+    modelRef.current.position.copy(position)
+
+    // === Convert rvec to quaternion ===
+    const theta = Math.sqrt(rvec[0] ** 2 + rvec[1] ** 2 + rvec[2] ** 2)
+    let quaternion = new THREE.Quaternion()
+    if (theta > 0) {
+      const axis = new THREE.Vector3(...rvec).normalize()
+      quaternion.setFromAxisAngle(axis, theta)
+
+      // Apply manual adjustment (e.g. 90° rotation)
       const manualQuat = new THREE.Quaternion().setFromEuler(
-      new THREE.Euler(Math.PI / 1, 0.5, 0) // ← change angles here
+        new THREE.Euler(Math.PI / 1, 0.5, 0)
       )
+      quaternion.multiply(manualQuat)
+    }
 
-      // Combine rotations: marker * manual
-      modelRef.current.quaternion.copy(quaternion.multiply(manualQuat))
-      }
+    // === Smooth quaternion ===
+    if (!previousPose.current.quaternion) {
+      previousPose.current.quaternion = quaternion.clone()
+    } else {
+      previousPose.current.quaternion.slerp(quaternion, 0.2)
+    }
+
+    modelRef.current.quaternion.copy(previousPose.current.quaternion)
+
+    // Store smoothed tvec too
+    previousPose.current.tvec = smoothedTvec
   })
 
   return (

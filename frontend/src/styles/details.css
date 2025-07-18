@@ -11,9 +11,12 @@
 .details-header {
     display: flex;
     align-items: center;
+    position: sticky;
+    top: 0;
     padding: 14px 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #cccccc;
     background-color: #ffffff;
+    gap: 10px;
 }
 
 .back-button {
@@ -69,7 +72,7 @@
 
 @media (max-width: 600px) {
     .details-header {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
     }
 

@@ -1,4 +1,53 @@
 .layout {
-    height: 96vh;           /* Set a fixed height */
-    overflow-y: auto;        /* Enable vertical scroll if needed */
+    height: 96vh;
+    overflow-y: auto;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.lens-logo {
+    height: 15vh;
+    width: auto;
+    position: sticky;
+    top: 0;
+    margin-top: 10px;
+    margin-bottom: -35px;
+    z-index: 100;
+}
+
+/* .layout {
+    height: 96vh;
+    overflow-y: auto;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lens-logo {
+    height: 15vh;
+    max-height: 100px;
+    width: auto;
+    position: sticky;
+    top: 0;
+    margin-top: 7px;
+    margin-bottom: -40px;
+    z-index: 100;
+}
+
+responsiveness
+@media (max-width: 780px) {
+    .lens-logo {
+        height: 8vh;
+        max-height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lens-logo {
+        height: 6vh;
+        max-height: 80px;
+    }
+} */

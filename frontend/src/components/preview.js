@@ -2,21 +2,21 @@ const Preview = [
     {
         id: 1,
         title: 'Oblation Plaza',
-        description: 'Oblation',
+        description: 'Lorem Ipsum',
         image: require('../assets/images/upou-oblation.png')
     },
 
     {
         id: 2,
         title: 'Main Building',
-        description: 'UPOU Main Building',
+        description: 'Lorem Ipsum',
         image: require('../assets/images/upou-main-building.png')
     },
 
     {
         id: 3,
         title: 'IMDPO Building',
-        description: 'IMDPO Building',
+        description: 'Lorem Ipsum',
         image: require('../assets/images/img-placeholder.jpg')
     },
 

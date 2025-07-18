@@ -25,7 +25,7 @@ function DetailsPage() {
 
         <div className="details-content">
           <h3 className="details-title">{image.title}</h3>
-          <p><strong>Year Built:</strong> {image.yearBuilt}</p>
+          <p>Year Built: {image.yearBuilt}</p>
           <p className="details-description">{image.description}</p>
         </div>
 

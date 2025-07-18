@@ -6,6 +6,7 @@ const API_URL = process.env.REACT_APP_API_URL
 export default function CameraCapture({ onPoseUpdate }) {
   const videoRef = useRef()
   const canvasRef = useRef()
+  const streamRef = useRef(null);
 
   useEffect(() => {
     const getCamera = async () => {
@@ -19,6 +20,7 @@ export default function CameraCapture({ onPoseUpdate }) {
           audio: false,
         })
         videoRef.current.srcObject = stream
+        streamRef.current = stream;
         videoRef.current.onloadedmetadata = () => {
           videoRef.current.play().catch((err) => {
             console.error("Autoplay error:", err)
@@ -83,17 +85,19 @@ export default function CameraCapture({ onPoseUpdate }) {
                     onPoseUpdate(null)
                 }
             }
-
-
-
-
         } catch (err) {
           console.error('Error sending frame:', err)
         }
       }, 'image/jpeg')
-    }, 500) // adjust interval for performance
+    }, 60) // adjust interval for performance
 
-    return () => clearInterval(interval)
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
+
+      clearInterval(interval)
+    }
   }, [onPoseUpdate])
 
   return (

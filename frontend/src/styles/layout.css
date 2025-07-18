@@ -23,11 +23,11 @@
 .lens-logo {
     height: 15vh;
     width: auto;
-    /* filter:
+    filter:
         drop-shadow(-2px -2px 0 white)
         drop-shadow(2px -2px 0 white)
         drop-shadow(-2px 2px 0 white)
-        drop-shadow(2px 2px 0 white); */
+        drop-shadow(2px 2px 0 white);
     /* background-color: #862633; */
 }
 

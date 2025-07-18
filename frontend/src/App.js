@@ -18,8 +18,6 @@ function App() {
           <Route path="/home/details/:id" element={<DetailsPage />} />
           <Route path="/scan" element={<Scanner data={""} />} />
         </Routes>
-
-        <Navbar />
       </BrowserRouter>
     </div>
   );

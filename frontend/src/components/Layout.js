@@ -7,7 +7,9 @@ import '../styles/layout.css';
 const Layout = ({ children }) => {
   return (
     <div className="layout">
-      <img alt="Lens Logo" src={LensLogo} className="lens-logo" />
+      <div className='logo-container'>
+        <img alt="Lens Logo" src={LensLogo} className="lens-logo" />
+      </div>
       <main className="main">
         {children}
       </main>

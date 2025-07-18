@@ -9,7 +9,7 @@ import Layout from '../components/Layout';
 const Home = () => {
     return (
         <Layout>
-            <div style={{ padding: '2rem' }}>
+            <div style={{ padding: '1rem' }}>
                 <CarouselImage />
                 <Lens />
                 <ImageCard />

@@ -4,14 +4,17 @@ import React from 'react';
 import CarouselImage from '../components/carousel';
 import Lens from '../components/introLens';
 import ImageCard from '../components/imageCards';
+import Layout from '../components/Layout';
 
 const Home = () => {
     return (
-        <div style={{ padding: '2rem' }}>
-            <CarouselImage />
-            <Lens />
-            <ImageCard />
-        </div>
+        <Layout>
+            <div style={{ padding: '2rem' }}>
+                <CarouselImage />
+                <Lens />
+                <ImageCard />
+            </div>
+        </Layout>
     );
 };
 

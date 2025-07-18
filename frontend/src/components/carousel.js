@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/carousel.css';
 
 // import images
-import UPOU from '../assets/images/upou.jpg';
-import MainBldg from '../assets/images/upou-main-building.jpg';
-import Oblation from '../assets/images/upou-oblation.jpg';
+import MainBldg from '../assets/images/upou-main-building.png';
+import Oblation from '../assets/images/upou-oblation.png';
+import UPOUMap from '../assets/images/upou-map.png';
 
 function CarouselImage() {
-    const images = [UPOU, Oblation, MainBldg];
+    const images = [UPOUMap, Oblation, MainBldg];
 
     return (
         <Carousel fade interval={3000}>

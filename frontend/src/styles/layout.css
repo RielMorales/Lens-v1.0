@@ -1,0 +1,4 @@
+.layout {
+    height: 96vh;           /* Set a fixed height */
+    overflow-y: auto;        /* Enable vertical scroll if needed */
+}

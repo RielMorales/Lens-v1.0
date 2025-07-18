@@ -89,7 +89,7 @@ export default function CameraCapture({ onPoseUpdate }) {
           console.error('Error sending frame:', err)
         }
       }, 'image/jpeg')
-    }, 60) // adjust interval for performance
+    }, 500) // adjust interval for performance
 
     return () => {
       if (streamRef.current) {

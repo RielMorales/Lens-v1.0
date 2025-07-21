@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -16,6 +20,11 @@
     max-width: 300px;
 }
 
+.image-card-link:focus {
+    outline: 2px solid #862633;
+    border-radius: 10px;
+}
+
 .image-card {
     background: #ffffff;
     border-radius: 10px;
@@ -24,7 +33,7 @@
     width: 100%;
     max-height: 400px;
     min-height: 230px;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-in-out;
 }
 
 .image-card:hover {

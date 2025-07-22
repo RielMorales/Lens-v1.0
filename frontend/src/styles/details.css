@@ -1,10 +1,24 @@
 .details-page {
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100vh;
     font-family: Helvetica;
     background: #ffffff;
-    padding: 0 16px;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.details-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    margin-bottom: 40px;
     box-sizing: border-box;
 }
 
@@ -28,12 +42,11 @@
     border-radius: 18px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     padding: 4px 8px;
-    transition: ease-in-out 0.2s;
+    transition: 0.2s ease;
 }
 
 .back-button:hover {
-    background-color: gray;
-    opacity: 40%;
+    background-color: #eee;
 }
 
 .details-title {
@@ -43,6 +56,9 @@
     margin: 0;
     flex: 1;
     text-align: center;
+
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 
 .image-wrapper {
@@ -66,12 +82,19 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 16px;
+    padding: 16px 20px;
 
-    max-width: 1200px;
+    max-width: 900px;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+}
+
+.details-content p:first-of-type {
+    font-weight: bold;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 4px;
 }
 
 .details-description {
@@ -85,7 +108,6 @@
 @media (max-width: 600px) {
     .details-header {
         flex-direction: row;
-        align-items: center;
         align-items: flex-start;
     }
 
@@ -93,6 +115,7 @@
         font-size: 18px;
         text-align: center;
         margin-top: 4px;
+        padding: 0 8px;
     }
 
     .back-button {

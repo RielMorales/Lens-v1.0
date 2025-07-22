@@ -13,24 +13,21 @@ function DetailsPage() {
   return (
     <DetailsLayout>
       <div className="details-page">
-        <div className="details-card">
-          <div className="details-header">
-            <button className="back-button" onClick={() => window.history.back()}>
-              ←
-            </button>
-            <h4>Building Details</h4>
-          </div>
-          <div className="image-wrapper">
-            <img src={image.image} alt={image.title} className="details-image" />
-          </div>
-
-          <div className="details-content">
-            <h3 className="details-title">{image.title}</h3>
-            <p>Year Built: {image.yearBuilt}</p>
-            <p className="details-description">{image.description}</p>
-          </div>
-
+        <div className="details-header">
+          <button className="back-button" onClick={() => window.history.back()}>
+            ←
+          </button>
+          <h4>Building Details</h4>
         </div>
+        <div className="image-wrapper">
+          <img src={image.image} alt={image.title} className="details-image" />
+        </div>
+        <div className="details-content">
+          <h3 className="details-title">{image.title}</h3>
+          <p>Year Built: {image.yearBuilt}</p>
+          <p className="details-description">{image.description}</p>
+        </div>
+
       </div>
     </DetailsLayout>
   );

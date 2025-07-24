@@ -8,9 +8,10 @@ import MainBldg from '../assets/images/upou-main-building.png';
 import Oblation from '../assets/images/upou-oblation.png';
 import UPOUMap from '../assets/images/upou-map.png';
 import WCMC from '../assets/images/upou-wcmc.png';
+import CCDL from '../assets/images/upou-ccdl.png';
 
 function CarouselImage() {
-    const images = [UPOUMap, Oblation, MainBldg, WCMC];
+    const images = [UPOUMap, Oblation, MainBldg, WCMC, CCDL];
 
     return (
         <div className="carousel-wrapper">

@@ -19,7 +19,7 @@
     }
 }
 
-@media (min-width: 1350px) {
+@media (min-width: 1200px) {
     .carousel-images {
         height: 80vh;
     }

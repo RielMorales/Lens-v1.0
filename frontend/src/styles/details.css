@@ -1,35 +1,41 @@
 .details-page {
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     font-family: Helvetica;
-    background: #f4f4f4;
-    padding: 16px;
+    background: #f9f9f9;
+    padding: 80px 16px 24px;
     box-sizing: border-box;
 }
 
 .details-header {
     display: flex;
     align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+
+    height: 64px;
     width: 100%;
-    max-width: 1000px;
-    padding: 10px 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-    z-index: 10;
-    gap: 10px;
+    margin: 0 auto;
+    padding: 0 24px;
+    gap: 12px;
+
+    color: #f9f9f9;
+    background-color: #862633;
+    border-bottom: 1px solid #dddddd;
+    z-index: 1000;
     box-sizing: border-box;
 }
 
 .back-button {
     font-size: 20px;
     cursor: pointer;
-    color: white;
     background: none;
-    background-color: #862633;
+    background-color: white;
     border: none;
     border-radius: 50px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
@@ -54,10 +60,10 @@
 .image-wrapper {
     display: flex;
     justify-content: center;
-    padding: 0 8px;
-    margin: 16px auto;
+    margin: 20px auto;
     width: 100%;
     max-width: 900px;
+    box-sizing: border-box;
 }
 
 .details-image {
@@ -74,8 +80,7 @@
     width: 100%;
     max-width: 900px;
     margin-bottom: 24px;
-    border-left: 6px solid #862633;
-    border-right: 6px solid #862633;
+    border: 1px solid #862633;
     border-radius: 12px;
 }
 
@@ -94,26 +99,28 @@
 @media (max-width: 600px) {
     .details-header {
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
+        padding: 0 12px;
     }
 
     .details-title {
-        font-size: 20px;
-        text-align: center;
+        font-size: 18px;
         margin-bottom: 8px;
     }
 
-    .image-wrapper {
-        margin: 8px 0;
+    .details-page {
+        padding: 80px 12px 24px;
     }
 
     .details-content {
-        padding: 16px 12px;
-        margin: 0 10px;
+        padding: 16px;
+        margin: 0 auto;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .details-image {
         max-height: 220px;
-        object-fit: cover;
+        width: 100%;
     }
 }

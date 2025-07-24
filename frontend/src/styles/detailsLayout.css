@@ -1,4 +1,3 @@
 .layout-details {
-    height: 96vh;
-    overflow-y: auto;
+    min-height: 96vh;
 }

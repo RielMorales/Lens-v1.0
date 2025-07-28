@@ -38,7 +38,7 @@ const Preview = [
         id: 6,
         title: 'CCDL Auditorium',
         description: 'Lorem Ipsum',
-        image: require('../assets/images/img-placeholder.jpg')
+        image: require('../assets/images/upou-ccdl.png')
     },
 
     {

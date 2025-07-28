@@ -1,17 +1,26 @@
-.carousel {
+.carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.carousel-images {
     width: 100%;
     height: auto;
     object-fit: contain;
 }
 
-@media (max-width: 780px) {
-    .carousel {
+@media (max-width: 800px) {
+    .carousel-images {
         height: 30vh;
     }
 }
 
-@media (min-width: 1350px) {
-    .carousel {
+@media (min-width: 1200px) {
+    .carousel-images {
         height: 80vh;
     }
 }

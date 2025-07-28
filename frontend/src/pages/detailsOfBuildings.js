@@ -22,7 +22,6 @@ function DetailsPage() {
         <div className="image-wrapper">
           <img src={image.image} alt={image.title} className="details-image" />
         </div>
-
         <div className="details-content">
           <h3 className="details-title">{image.title}</h3>
           <p>Year Built: {image.yearBuilt}</p>

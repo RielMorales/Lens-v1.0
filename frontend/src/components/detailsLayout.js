@@ -5,9 +5,9 @@ import '../styles/detailsLayout.css';
 
 const DetailsLayout = ({ children }) => {
     return (
-        <div className="layout">
+        <div className="layout-details">
 
-            <main style={{ padding: '1rem' }}>
+            <main>
                 {children}
             </main>
             <Navbar />

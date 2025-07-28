@@ -92,7 +92,7 @@ export default function PoseRenderer({ poses }) {
         const axis = new THREE.Vector3(...rvec).normalize()
         const q = new THREE.Quaternion().setFromAxisAngle(axis, theta)
         const adjustQuat = new THREE.Quaternion().setFromEuler(
-          new THREE.Euler(Math.PI / 1, 0.5, 0)
+          new THREE.Euler(Math.PI / 1, 0, 0)
         )
         q.multiply(adjustQuat)
 

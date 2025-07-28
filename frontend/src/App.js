@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 // import pages/components
 import Home from './pages/home.js';
 import Scanner from './pages/scan.js';
-import Navbar from './components/navbar.js';
 import DetailsPage from './pages/detailsOfBuildings.js';
 
 function App() {

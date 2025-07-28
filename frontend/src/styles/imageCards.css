@@ -1,3 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -22,13 +31,13 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 100%;
-    max-height: 400px;
-    min-height: 230px;
-    transition: transform 0.2s;
+    max-height: 420px;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out;
 }
 
 .image-card:hover {
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 
 .image-thumb {
@@ -38,19 +47,25 @@
 }
 
 .image-info {
-    padding: 10px 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .image-info h3 {
     margin: 0;
-    font-size: 1.2em;
+    font-size: 1rem;
     color: #2c3e50;
+
+    line-height: 1.5;
 }
 
 .image-info p {
     margin: 5px 0 0;
-    font-size: 0.95em;
+    font-size: 0.85em;
     color: #666666;
+    line-height: 1.4;
 }
 
 /* for responsiveness */

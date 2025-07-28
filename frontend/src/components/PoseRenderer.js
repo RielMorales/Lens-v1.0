@@ -84,7 +84,7 @@ export default function PoseRenderer({ poses }) {
       mesh.position.set(
         smoothedTvec[0] * scaleFactor + 0.2,
         -smoothedTvec[1] * scaleFactor - 0.0,
-        -smoothedTvec[2] * scaleFactor - 0.0
+        -smoothedTvec[2] * scaleFactor - 10.0
       )
 
       const theta = Math.sqrt(rvec[0] ** 2 + rvec[1] ** 2 + rvec[2] ** 2)

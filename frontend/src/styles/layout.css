@@ -18,7 +18,7 @@
     position: sticky;
     top: 0;
     width: 100vw;
-    padding: 12px;
+    padding: 10px;
     z-index: 3;
 }
 
@@ -39,7 +39,7 @@
     padding: 1rem;
 }
 
-@media (max-width: 780px) {
+/* @media (max-width: 780px) {
     .lens-logo {
         height: 8vh;
         max-height: 100px;
@@ -51,4 +51,4 @@
         height: 6vh;
         max-height: 80px;
     }
-}
+} */

@@ -36,7 +36,6 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    padding: 1rem;
 }
 
 /* @media (max-width: 780px) {

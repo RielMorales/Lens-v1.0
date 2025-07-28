@@ -83,7 +83,7 @@ export default function PoseRenderer({ poses }) {
 
       mesh.position.set(
         smoothedTvec[0] * scaleFactor + 0.0,
-        -smoothedTvec[1] * scaleFactor - 1.0,
+        -smoothedTvec[1] * scaleFactor + 0.5,
         -smoothedTvec[2] * scaleFactor - 5.0
       )
 

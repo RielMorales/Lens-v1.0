@@ -69,21 +69,11 @@ export default function CameraCapture({ onPoseUpdate }) {
             // console.log("📦 res.data content:", res.data.poses[0])
             
 
-            if (res.data.poses[0] === undefined){
-                onPoseUpdate(null)
+            if (Array.isArray(res.data.poses) && res.data.poses.length > 0) {
+              // Pass the entire array of marker poses
+              onPoseUpdate(res.data.poses) // each should have id, rvec, tvec
             } else {
-                const { rvec, tvec } = res.data.poses[0]
-                console.log("Sending pose:", rvec, tvec)
-                // console.log("📦 res.data type:", typeof res.data)
-                // console.log("📦 res.data content:", res.data)
-                // console.log("rvec:", rvec)
-                // console.log("tvec:", tvec)
-
-                if (rvec && tvec) {
-                    onPoseUpdate({ rvec, tvec })
-                } else {
-                    onPoseUpdate(null)
-                }
+              onPoseUpdate([]) // no markers detected
             }
         } catch (err) {
           console.error('Error sending frame:', err)

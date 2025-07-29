@@ -1,5 +1,8 @@
+// Import React and routing utilities
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+// Import image data and styles
 import imageData from './preview';
 import '../styles/imageCards.css';
 

@@ -8,7 +8,9 @@ function DetailsPage() {
   const { id } = useParams();
   const image = FullDetails.find(item => item.id === parseInt(id));
 
-  if (!image) return <h2>Image not found</h2>;
+
+  console.log("Image data:", image); // check if image.year exists
+
 
   return (
     <DetailsLayout>
@@ -24,7 +26,7 @@ function DetailsPage() {
         </div>
         <div className="details-content">
           <h3 className="details-title">{image.title}</h3>
-          <p>Year Built: {image.yearBuilt}</p>
+          <p>Year Built: {image.year}</p>
           <p className="details-description">{image.description}</p>
         </div>
 

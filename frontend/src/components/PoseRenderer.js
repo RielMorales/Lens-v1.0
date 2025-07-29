@@ -82,9 +82,9 @@ export default function PoseRenderer({ poses }) {
       const smoothedTvec = smoothArray(prevPose.tvec, tvec)
 
       mesh.position.set(
-        smoothedTvec[0] * scaleFactor + 0.2,
-        -smoothedTvec[1] * scaleFactor - 0.5,
-        -smoothedTvec[2] * scaleFactor - 2.0
+        smoothedTvec[0] * scaleFactor + 0.0,
+        -smoothedTvec[1] * scaleFactor + 0.5,
+        -smoothedTvec[2] * scaleFactor - 5.0
       )
 
       const theta = Math.sqrt(rvec[0] ** 2 + rvec[1] ** 2 + rvec[2] ** 2)
@@ -92,7 +92,7 @@ export default function PoseRenderer({ poses }) {
         const axis = new THREE.Vector3(...rvec).normalize()
         const q = new THREE.Quaternion().setFromAxisAngle(axis, theta)
         const adjustQuat = new THREE.Quaternion().setFromEuler(
-          new THREE.Euler(Math.PI / 1, 0.5, 0)
+          new THREE.Euler(Math.PI / 1, 0, 0)
         )
         q.multiply(adjustQuat)
 

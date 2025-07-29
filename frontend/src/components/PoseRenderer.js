@@ -1,164 +1,125 @@
-import { useRef, useEffect } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useRef, useEffect, useState } from 'react'
+import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-export default function PoseRenderer({ rvec, tvec }) {
-  const modelRef = useRef()
-  // const [videoTexture, setVideoTexture] = useState(null)
-  // const [videoScale, setVideoScale] = useState([])
-  const gltf = useGLTF('/assets/gltf/asset.gltf') // or /assets/test.glb
+// Map of marker IDs to video file paths
+const VIDEO_MAP = {
+  '1': '/assets/videos/A Prelude to the 25th Anniversary Audio-Visual Presentation.mp4',
+  '2': '/assets/videos/Launching of UPOU Projects Audio-Visual Presentation.mp4',
+  '3': '/assets/videos/UPOU 24th Anniversary (2019) Audio-Visual Presentation.mp4',
+}
 
-  const previousPose = useRef({ rvec: null, tvec: null })
+export default function PoseRenderer({ poses }) {
+  const meshRefs = useRef({})
+  const videoRefs = useRef({})
+  const markerVisibleFrames = useRef({})
+  const [videoTextures, setVideoTextures] = useState({})
 
-  const { gl } = useThree()
-
-  // Low-pass filter function
-  const smoothArray = (prev, curr, alpha = 0.1) => {
+  const smoothArray = (prev, curr, alpha = 0.2) => {
     if (!prev) return curr
     return prev.map((p, i) => p * (1 - alpha) + curr[i] * alpha)
   }
 
   useEffect(() => {
+    Object.entries(VIDEO_MAP).forEach(([id, path]) => {
+      const video = document.createElement('video')
+      video.src = path
+      video.crossOrigin = 'anonymous'
+      video.loop = true
+      video.muted = false // enable audio
+      video.playsInline = true
 
-    // const canvas = gl.domElement
-
-    // const width = 1024 * 1.5
-    // const height = 576 * 1.5
-
-    // canvas.style.width = `${width}px`
-    // canvas.style.height = `${height}px`
-
-    // gl.setSize(width, height, false)
-    // gl.setPixelRatio(window.devicePixelRatio) // optional for sharpness
-    // console.log("🎥 WebGL canvas size:", canvas.width, "x", canvas.height)
-
-    const video = document.createElement('video')
-    video.autoplay = true
-    video.muted = true
-    video.playsInline = true
-
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false })
-      .then(stream => {
-        video.srcObject = stream
-        video.onloadedmetadata = () => {
-          // const aspectRatio = video.videoWidth / video.videoHeight
-          // const height = 10
-          // const width = height * aspectRatio
-          // setVideoScale([width, height, 1])
-        }
-        video.play()
+      video.addEventListener('canplaythrough', () => {
         const texture = new THREE.VideoTexture(video)
         texture.minFilter = THREE.LinearFilter
         texture.magFilter = THREE.LinearFilter
-        // setVideoTexture(texture)
-      })
-}, [gl])
+        texture.format = THREE.RGBFormat
 
+        videoRefs.current[id] = video
+
+        setVideoTextures(prev => ({
+          ...prev,
+          [id]: { video, texture }
+        }))
+      })
+
+      video.load()
+    })
+  }, [])
 
   useFrame(() => {
-      // if (!modelRef.current || !rvec || !tvec) return
+    Object.entries(videoTextures).forEach(([id, { video }]) => {
+      const mesh = meshRefs.current[id]
+      if (mesh) mesh.visible = false
 
-      // console.log("✅ Pose Data", { rvec, tvec })
+      // Decrease visibility count
+      markerVisibleFrames.current[id] = Math.max((markerVisibleFrames.current[id] || 0) - 1, 0)
 
-      // // Smooth the pose
-      // const smoothedRvec = smoothArray(previousPose.current.rvec, rvec)
-      // const smoothedTvec = smoothArray(previousPose.current.tvec, tvec)
+      if (markerVisibleFrames.current[id] === 0 && !video.paused) {
+        video.pause()
+      }
+    })
 
-      // previousPose.current = {
-      //   rvec: smoothedRvec,
-      //   tvec: smoothedTvec,
-      // }
+    if (!poses || poses.length === 0) return
 
-      // const scaleFactor = 10
+    poses.forEach(({ id, rvec, tvec }) => {
+      const mesh = meshRefs.current[id]
+      const entry = videoTextures[id]
+      if (!mesh || !entry) return
 
-      // // Convert translation from cm to meters, flip axes to match Three.js convention
-      // const position = new THREE.Vector3(
-      //   smoothedTvec[0] * scaleFactor +0.20, // +Right    -Left
-      //   -smoothedTvec[1] * scaleFactor -0.50, //+Up       -Down
-      //   -smoothedTvec[2] * scaleFactor -2.00 // +Forward  -Backward  
-      // )
+      // Increase visibility count
+      markerVisibleFrames.current[id] = 15
 
-      // modelRef.current.position.copy(position)
+      mesh.visible = true
+      const { video } = entry
 
-      // // Convert rvec (Rodrigues) to quaternion
-      // const theta = Math.sqrt(smoothedRvec[0] ** 2 + smoothedRvec[1] ** 2 + smoothedRvec[2] ** 2)
-      // if (theta > 0) {
-      // const axis = new THREE.Vector3(...smoothedRvec).normalize()
-      // const quaternion = new THREE.Quaternion().setFromAxisAngle(axis, theta)
-      
-      // // modelRef.current.quaternion.copy(quaternion)
+      if (video.paused) {
+        video.play().catch(e => console.warn(`Playback error: ${e}`))
+      }
 
-      // // Manual rotation adjustment (example: rotate 90° on X)
-      // const manualQuat = new THREE.Quaternion().setFromEuler(
-      // new THREE.Euler(Math.PI / 1, 0.5, 0) // ← change angles here
-      // )
+      const scaleFactor = 10
+      const prevPose = mesh.userData.prevPose || {}
+      const smoothedTvec = smoothArray(prevPose.tvec, tvec)
 
-      // // Combine rotations: marker * manual
-      // modelRef.current.quaternion.copy(quaternion.multiply(manualQuat))
-      // }
-    if (!modelRef.current || !rvec || !tvec) return
-
-    const scaleFactor = 10
-
-    // === Smooth translation ===
-    const smoothedTvec = smoothArray(previousPose.current.tvec, tvec)
-
-    const position = new THREE.Vector3(
-      smoothedTvec[0] * scaleFactor + 0.20,
-      -smoothedTvec[1] * scaleFactor - 0.50,
-      -smoothedTvec[2] * scaleFactor - 2.00
-    )
-
-    modelRef.current.position.copy(position)
-
-    // === Convert rvec to quaternion ===
-    const theta = Math.sqrt(rvec[0] ** 2 + rvec[1] ** 2 + rvec[2] ** 2)
-    let quaternion = new THREE.Quaternion()
-    if (theta > 0) {
-      const axis = new THREE.Vector3(...rvec).normalize()
-      quaternion.setFromAxisAngle(axis, theta)
-
-      // Apply manual adjustment (e.g. 90° rotation)
-      const manualQuat = new THREE.Quaternion().setFromEuler(
-        new THREE.Euler(Math.PI / 1, 0.5, 0)
+      mesh.position.set(
+        smoothedTvec[0] * scaleFactor + 0.0,
+        -smoothedTvec[1] * scaleFactor + 0.5,
+        -smoothedTvec[2] * scaleFactor - 5.0
       )
-      quaternion.multiply(manualQuat)
-    }
 
-    // === Smooth quaternion ===
-    if (!previousPose.current.quaternion) {
-      previousPose.current.quaternion = quaternion.clone()
-    } else {
-      previousPose.current.quaternion.slerp(quaternion, 0.2)
-    }
+      const theta = Math.sqrt(rvec[0] ** 2 + rvec[1] ** 2 + rvec[2] ** 2)
+      if (theta > 0) {
+        const axis = new THREE.Vector3(...rvec).normalize()
+        const q = new THREE.Quaternion().setFromAxisAngle(axis, theta)
+        const adjustQuat = new THREE.Quaternion().setFromEuler(
+          new THREE.Euler(Math.PI / 1, 0, 0)
+        )
+        q.multiply(adjustQuat)
 
-    modelRef.current.quaternion.copy(previousPose.current.quaternion)
+        if (!prevPose.quaternion) {
+          mesh.quaternion.copy(q)
+        } else {
+          mesh.quaternion.slerp(q, 0.2)
+        }
 
-    // Store smoothed tvec too
-    previousPose.current.tvec = smoothedTvec
+        mesh.userData.prevPose = { quaternion: q.clone(), tvec: smoothedTvec }
+      }
+    })
   })
 
   return (
     <>
-      {/* {videoTexture && (
-        <mesh scale={[gl.width, gl.height, 1]} position={[0, 0, -1]}>
+      {Object.entries(videoTextures).map(([id, { texture }]) => (
+        <mesh
+          key={id}
+          ref={(ref) => (meshRefs.current[id] = ref)}
+          scale={[3, 1.68, 1]}
+          visible={false}
+        >
           <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial map={videoTexture} toneMapped={false} />
+          <meshBasicMaterial map={texture} toneMapped={false} />
         </mesh>
-      )} */}
-
-      <primitive
-        ref={modelRef}
-        object={gltf.scene}
-        scale={0.005}
-      />
-
-        {/* <mesh ref={modelRef}>
-          <boxGeometry args={[0.5, 0.5, 0.5]} />
-          <meshStandardMaterial color="hotpink" />
-        </mesh> */}
-
+      ))}
     </>
   )
 }

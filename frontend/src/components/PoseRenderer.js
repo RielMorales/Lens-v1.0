@@ -90,8 +90,8 @@ export default function PoseRenderer({ poses }) {
 
       // Update 3D position based on smoothed translation vector
       mesh.position.set(
-        smoothedTvec[0] * scaleFactor + 1.5,      // x: left/right
-        -smoothedTvec[1] * scaleFactor + 1.5,     // y: up/down (inverted)
+        smoothedTvec[0] * scaleFactor + 2.0,      // x: left/right
+        -smoothedTvec[1] * scaleFactor + 2.0,     // y: up/down (inverted)
         -smoothedTvec[2] * scaleFactor - 5.0      // z: forward/backward (into screen)
       )
 

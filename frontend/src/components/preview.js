@@ -17,14 +17,14 @@ const Preview = [
         id: 3,
         title: 'IMDPO Building',
         description: 'Lorem Ipsum',
-        image: require('../assets/images/img-placeholder.jpg')
+        image: require('../assets/images/IMG_3146.jpg')
     },
 
     {
         id: 4,
         title: 'Teaching and Learning Hub',
         description: 'Lorem Ipsum',
-        image: require('../assets/images/img-placeholder.jpg')
+        image: require('../assets/images/IMG_3143.jpg')
     },
 
     {

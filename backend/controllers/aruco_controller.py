@@ -43,7 +43,8 @@ async def process_frame(file: UploadFile = File(...)):
             poses.append({
                 "id": int(ids[i]),                  # Marker ID
                 "rvec": rvecs[i][0].tolist(),       # Rotation vector
-                "tvec": tvecs[i][0].tolist()        # Translation vector
+                "tvec": tvecs[i][0].tolist(),        # Translation vector
+                "corners": corners[i][0].tolist()  # 4 points (top-left, top-right, bottom-right, bottom-left)
             })
     else:
         # Return an empty array if no markers are detected

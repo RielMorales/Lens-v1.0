@@ -6,6 +6,7 @@ def setup_cors(app):
     # List of allowed origins for cross-origin requests (frontend URLs)
     origins = [
         "https://lensv1.netlify.app",
+        "https://lensv2.netlify.app",
         "http://localhost:3000"
     ]
 

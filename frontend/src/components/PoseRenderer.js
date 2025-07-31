@@ -103,7 +103,7 @@ export default function PoseRenderer({ poses }) {
         
         // Adjust orientation (rotate 180° around X axis)
         const adjustQuat = new THREE.Quaternion().setFromEuler(
-          new THREE.Euler(Math.PI / 1, 0, -0.5)
+          new THREE.Euler(Math.PI / 1, 0, 0.25)
         )
         q.multiply(adjustQuat)
 

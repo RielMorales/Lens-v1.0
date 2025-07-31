@@ -20,7 +20,7 @@ const FullDetails = [
         title: 'IMDPO Building',
         year: '2007',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        image: require('../assets/images/img-placeholder.jpg')
+        image: require('../assets/images/IMG_3146.jpg')
     },
 
     {
@@ -28,7 +28,7 @@ const FullDetails = [
         title: 'Teaching and Learning Hub',
         year: '2017',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        image: require('../assets/images/img-placeholder.jpg')
+        image: require('../assets/images/IMG_3143.jpg')
     },
 
     {

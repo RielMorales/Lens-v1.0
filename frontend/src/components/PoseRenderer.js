@@ -127,7 +127,7 @@ export default function PoseRenderer({ poses }) {
         <mesh
           key={id}
           ref={(ref) => (meshRefs.current[id] = ref)}
-          scale={[6, 3.36, 1]}
+          scale={[12, 6.72, 1]}
           visible={false}
         >
           <planeGeometry args={[1, 1]} />   {/* Flat plane to display video */}

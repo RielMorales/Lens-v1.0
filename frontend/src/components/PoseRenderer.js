@@ -16,7 +16,7 @@ export default function PoseRenderer({ poses }) {
   const [videoTextures, setVideoTextures] = useState({})  // Stores textures and video objects
 
   // Smooth transition between previous and current translation vectors
-  const smoothArray = (prev, curr, alpha = 0.5) => {
+  const smoothArray = (prev, curr, alpha = 0.2) => {
     if (!prev) return curr
     return prev.map((p, i) => p * (1 - alpha) + curr[i] * alpha)
   }
@@ -127,7 +127,7 @@ export default function PoseRenderer({ poses }) {
         <mesh
           key={id}
           ref={(ref) => (meshRefs.current[id] = ref)}
-          scale={[6*1.5, 3.36*1.5, 1]}
+          scale={[6*1.25, 3.36*1.25, 1]}
           visible={false}
         >
           <planeGeometry args={[1, 1]} />   {/* Flat plane to display video */}

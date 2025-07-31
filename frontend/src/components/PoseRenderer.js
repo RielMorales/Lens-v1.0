@@ -111,7 +111,7 @@ export default function PoseRenderer({ poses }) {
         if (!prevPose.quaternion) {
           mesh.quaternion.copy(q)
         } else {
-          mesh.quaternion.slerp(q, 0.1)
+          mesh.quaternion.slerp(q, 0.5)
         }
 
         // Save this pose as previous pose for next frame

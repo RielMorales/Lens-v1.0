@@ -83,7 +83,7 @@ export default function PoseRenderer({ poses }) {
         video.play().catch(e => console.warn(`Playback error: ${e}`))
       }
 
-      const scaleFactor = 20
+      const scaleFactor = 10
       const prevPose = mesh.userData.prevPose || {}
       // Smooth translation vector
       const smoothedTvec = smoothArray(prevPose.tvec, tvec)
@@ -127,7 +127,7 @@ export default function PoseRenderer({ poses }) {
         <mesh
           key={id}
           ref={(ref) => (meshRefs.current[id] = ref)}
-          scale={[12, 6.72, 1]}
+          scale={[6*1.5, 3.36*1.5, 1]}
           visible={false}
         >
           <planeGeometry args={[1, 1]} />   {/* Flat plane to display video */}

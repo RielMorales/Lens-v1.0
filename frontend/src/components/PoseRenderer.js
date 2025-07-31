@@ -83,7 +83,7 @@ export default function PoseRenderer({ poses }) {
         video.play().catch(e => console.warn(`Playback error: ${e}`))
       }
 
-      const scaleFactor = 15
+      const scaleFactor = 20
       const prevPose = mesh.userData.prevPose || {}
       // Smooth translation vector
       const smoothedTvec = smoothArray(prevPose.tvec, tvec)

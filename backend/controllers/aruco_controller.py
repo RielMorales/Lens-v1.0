@@ -35,7 +35,7 @@ async def process_frame(file: UploadFile = File(...)):
     if ids is not None:
         # If markers are detected, estimate the pose of each
         rvecs, tvecs, _ = cv2.aruco.estimatePoseSingleMarkers(
-            corners, 0.025, camera_matrix, dist_coeffs      # 0.025 = marker side length in meters
+            corners, 0.080, camera_matrix, dist_coeffs      # 0.025 = marker side length in meters
         )
 
         # Convert the detected pose (rotation and translation) vectors to a list format

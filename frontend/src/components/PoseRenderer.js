@@ -16,7 +16,7 @@ export default function PoseRenderer({ poses }) {
   const [videoTextures, setVideoTextures] = useState({})  // Stores textures and video objects
 
   // Smooth transition between previous and current translation vectors
-  const smoothArray = (prev, curr, alpha = 0.2) => {
+  const smoothArray = (prev, curr, alpha = 0.5) => {
     if (!prev) return curr
     return prev.map((p, i) => p * (1 - alpha) + curr[i] * alpha)
   }

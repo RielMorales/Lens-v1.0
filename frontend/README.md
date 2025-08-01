@@ -1,70 +1,143 @@
-# Getting Started with Create React App
+UPOU Lens 📱✨
+A marker-based Augmented Reality (AR) web application for exploring the University of the Philippines Open University (UPOU) campus through interactive video overlays.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🎯 Overview
+UPOU Lens transforms campus exploration through Augmented Reality. Point your mobile camera at ArUco markers placed around the UPOU campus to unlock location-specific video content and information about buildings, landmarks, and campus history.
+✨ Key Features
 
-## Available Scripts
+📱 Mobile-First Design - Runs entirely in web browsers, no app installation required
+🎯 Marker-Based AR - Scan ArUco markers to trigger AR content
+🎥 Video Overlays - High-quality video content aligned to physical markers
+🏛️ Campus Information - Detailed information about UPOU buildings and landmarks
+📐 3D Model Support - Ready support for 3D model overlays
+🌐 Cross-Platform - Works on iOS Safari, Android Chrome, and modern browsers
+⚡ Real-Time Processing - Live camera feed with AR rendering
 
-In the project directory, you can run:
+🏗️ Architecture
+Mobile Browser (React + Three.js)
+        ↓
+    Camera Feed
+        ↓
+FastAPI Backend (Python + OpenCV)
+        ↓
+   Marker Detection
+        ↓
+   AR Content Overlay
 
-### `npm start`
+Tech Stack
+Frontend:
+React.js - UI framework
+Three.js / React Three Fiber - 3D graphics, video and AR rendering
+WebRTC - Camera access
+Modern web browsers with WebGL support
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Backend:
+FastAPI - Python web framework
+OpenCV - Computer vision and ArUco marker detection
+Python 3.8+ - Core backend language
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Deployment:
+Netlify - Frontend hosting and CDN
+Render - Backend API hosting
 
-### `npm test`
+🚀 Getting Started
+Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Node.js 16+ and npm
+Python 3.8+
+Modern mobile browser with camera support
+Stable internet connection (minimum 1 Mbps)
 
-### `npm run build`
+Setup
+bash# Clone the repository
+git clone https://github.com/RielMorales/Lens-v1.0.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Install dependencies in Frontend
+npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Start development server
+npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  #On Linux/WSL
 
-### `npm run eject`
+# Install dependencies in Backend
+pip install -r requirements.txt
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Start development server
+python3 main.py
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Environment Variables
+Create .env files in frontend:
+Frontend (.env):
+REACT_APP_API_URL= http://localhost:8000 or https://lens-v1-0.onrender.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+📱 Usage
+Open the App: Visit the deployed URL (lensv1.netlify.app)(recommended) or run locally 
+Grant Camera Permission: Allow browser access to your device camera
+Find a Marker: Locate ArUco markers around the UPOU campus
+Scan and Explore: Point your camera at markers to see AR content
+Interact: Enjoy videos and information about campus locations
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🎯 ArUco Markers
+Specifications
+Dictionary: ArUco 4x4, 5x5, and 6x6 supported (Currently using 4x4)
+Size: 80mm x 80mm recommended
+Quality: High-contrast printing on matte paper
+Placement: Eye level (1.5-1.8m height) with good lighting
 
-## Learn More
+Campus Locations
+-Oblation Plaza
+-Main Building
+-IMDPO Building
+-Teaching and Learning Hub
+-World Class Multimedia Center
+-CCDL Auditorium
+-ICC Building
+-Academic Residences
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🔧 Deployment
+Frontend (Netlify)
 
-### Code Splitting
+Connect GitHub repository to Netlify
+Set build command: npm run build
+Set publish directory: build
+Configure environment variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Backend (Render)
 
-### Analyzing the Bundle Size
+Connect GitHub repository to Render
+Set build command: pip install -r requirements.txt
+Set start command: python3 main.py
+Configure environment variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+🚀 Roadmap
+Current Version (v1.0)
 
-### Making a Progressive Web App
+✅ Marker-based AR detection
+✅ Video overlay functionality
+✅ Mobile browser support
+✅ UPOU campus content
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Upcoming Features
 
-### Advanced Configuration
+🔄 Real location data integration
+🔄 GPS-based AR functionality
+🔄 Device orientation detection
+🔄 UI/UX improvements
+🔄 VR/3D experience support
+🔄 ArUco marker generator
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+📚 Documentation
+Software Requirements Specification
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+👥 Team
+Current Development Team
+Interns: Riel Jefferson Morales, Summer San Diego
+Project Managers: Joshua Sta. Rita, Dan Zakai Pulmano
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Acknowledgments
+Special thanks to Allynha Louise Pisano (March 2025) for creating the initial prototype that made this project possible.

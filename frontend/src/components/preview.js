@@ -52,7 +52,7 @@ const Preview = [
         id: 8,
         title: 'Academic Residences',
         description: 'Lorem Ipsum',
-        image: require('../assets/images/img-placeholder.jpg')
+        image: require('../assets/images/upou-acad-res.png')
     },
 
 ];
